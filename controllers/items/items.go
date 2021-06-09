@@ -3,10 +3,14 @@ package items_controllers
 import (
 	items_domain "bookstore_items-api/domain/items"
 	items_service "bookstore_items-api/services/items"
-	"fmt"
+	http_utils "bookstore_items-api/utils/http"
+	"encoding/json"
+	"io/ioutil"
+
 	"net/http"
 
 	"github.com/bRRRITSCOLD/bookstore_oauth-go/oauth"
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 var (
@@ -23,22 +27,34 @@ type itemsController struct{}
 func (iC *itemsController) CreateItem(w http.ResponseWriter, r *http.Request) {
 	authenticateUserRequestErr := oauth.AuthenticateRequest(r)
 	if authenticateUserRequestErr != nil {
-		// TODO: return error to caller
+		http_utils.RespondError(w, *authenticateUserRequestErr)
 		return
 	}
 
-	item := items_domain.Item{
-		Seller: oauth.GetCallerID(r),
+	requestBody, readAllErr := ioutil.ReadAll(r.Body)
+	if readAllErr != nil {
+		apiErr := errors_utils.NewBadRequestAPIError("invalid request body", readAllErr)
+		http_utils.RespondError(w, *apiErr)
+		return
 	}
+	defer r.Body.Close()
 
-	result, err := items_service.ItemsService.Create(item)
-	if err != nil {
-		// TODO: return error to caller
+	var itemToCreate items_domain.Item
+	if unmarshalErr := json.Unmarshal(requestBody, &itemToCreate); unmarshalErr != nil {
+		apiErr := errors_utils.NewBadRequestAPIError("invalid item json body", unmarshalErr)
+		http_utils.RespondError(w, *apiErr)
 		return
 	}
 
-	// TODO: return result to caller
-	fmt.Println(result)
+	itemToCreate.Seller = oauth.GetCallerID(r)
+
+	createdItem, createErr := items_service.ItemsService.Create(itemToCreate)
+	if createErr != nil {
+		http_utils.RespondError(w, *createErr)
+		return
+	}
+
+	http_utils.RespondJson(w, http.StatusCreated, createdItem)
 }
 
 func (iC *itemsController) GetItem(w http.ResponseWriter, r *http.Request) {
