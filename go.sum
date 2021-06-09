@@ -3,10 +3,11 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/aws/aws-sdk-go v1.38.3/go.mod h1:hcU610XS61/+aQV88ixoOzUoG7v3b31pl2zKMmprdro=
 github.com/bRRRITSCOLD/bookstore_oauth-go v0.0.0-20210606231223-66a6553be775 h1:J1kWL0FbvOLuMnAA9uOcEyFOj+ThP0Z/4fb1vFLUafI=
 github.com/bRRRITSCOLD/bookstore_oauth-go v0.0.0-20210606231223-66a6553be775/go.mod h1:jaSOAO7UY0HLoZD6I19paOsVizQ3+SJUAUs7pL8pNA4=
-github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08 h1:JNX0AInEmDhHHG4LlxZHcMYv5PeYFIIBDvsdmx97BJM=
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08/go.mod h1:LnQeTPCZgeZVuab0VdeQ6neWNmUmvnEF9YzuMKHlNmI=
-github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210607000718-c054705793d5 h1:kQYN3Slb5iQOUCNoJ3N/P+wqDC252aW1F1sF8VhsBnQ=
-github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210607000718-c054705793d5/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609201448-a5254c29dac2 h1:rNXNjC1aNgGHXfouV+s3HK+CuGafBJEH8n6kqyuxn8U=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609201448-a5254c29dac2/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609202555-dbba80f3fb93 h1:InCAhN1bs8ZNOcSu/PbcmXmYITmp/Leigw+YJdQF5UE=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609202555-dbba80f3fb93/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
@@ -52,7 +53,6 @@ github.com/mailru/easyjson v0.7.7 h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0
 github.com/mailru/easyjson v0.7.7/go.mod h1:xzfreul335JAWq5oZzymOObrkdz5UnU4kGfJJLY9Nlc=
 github.com/olivere/elastic v6.2.35+incompatible h1:MMklYDy2ySi01s123CB2WLBuDMzFX4qhFcA5tKWJPgM=
 github.com/olivere/elastic v6.2.35+incompatible/go.mod h1:J+q1zQJTgAz9woqsbVRqGeB5G1iqDKVBWLNSYW8yfJ8=
-github.com/olivere/elastic/v7 v7.0.24 h1:9ZcCQP3Pvgese7TaypYiVAL49sCEphyIwkVxtRf8jb8=
 github.com/olivere/elastic/v7 v7.0.24/go.mod h1:OuWmD2DiuYhddWegBKPWQuelVKBLrW0fa/VUYgxuGTY=
 github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

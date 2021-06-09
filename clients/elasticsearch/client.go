@@ -62,6 +62,7 @@ func (c *esClient) Index(index string, docType string, doc interface{}) (*elasti
 		logger_utils.Error(fmt.Sprintf("error when trying to index document in index %s", index), err)
 		return nil, err
 	}
+
 	return result, nil
 }
 
