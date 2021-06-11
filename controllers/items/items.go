@@ -34,14 +34,14 @@ func (iC *itemsController) CreateItem(w http.ResponseWriter, r *http.Request) {
 	callerId := oauth.GetCallerID(r)
 	if callerId == 0 {
 		apiErr := errors_utils.NewUnauthorizedAPIError("unauthorized for action", nil)
-		http_utils.RespondError(w, *apiErr)
+		http_utils.RespondError(w, apiErr)
 		return
 	}
 
 	requestBody, readAllErr := ioutil.ReadAll(r.Body)
 	if readAllErr != nil {
 		apiErr := errors_utils.NewBadRequestAPIError("invalid request body", readAllErr)
-		http_utils.RespondError(w, *apiErr)
+		http_utils.RespondError(w, apiErr)
 		return
 	}
 	defer r.Body.Close()
@@ -49,7 +49,7 @@ func (iC *itemsController) CreateItem(w http.ResponseWriter, r *http.Request) {
 	var itemToCreate items_domain.Item
 	if unmarshalErr := json.Unmarshal(requestBody, &itemToCreate); unmarshalErr != nil {
 		apiErr := errors_utils.NewBadRequestAPIError("invalid item json body", unmarshalErr)
-		http_utils.RespondError(w, *apiErr)
+		http_utils.RespondError(w, apiErr)
 		return
 	}
 
@@ -57,7 +57,7 @@ func (iC *itemsController) CreateItem(w http.ResponseWriter, r *http.Request) {
 
 	createdItem, createErr := items_service.ItemsService.Create(itemToCreate)
 	if createErr != nil {
-		http_utils.RespondError(w, *createErr)
+		http_utils.RespondError(w, createErr)
 		return
 	}
 

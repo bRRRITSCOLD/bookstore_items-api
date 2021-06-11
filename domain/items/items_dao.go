@@ -11,7 +11,7 @@ const (
 	ITEM_ELASTICSEARCH_DOC_TYPE = "item"
 )
 
-func (i *Item) Save() *errors_utils.APIError {
+func (i *Item) Save() errors_utils.APIError {
 	result, err := elasticsearch_client.Client.Index(
 		ITEMS_ELASTICSEARCH_INDEX,
 		ITEM_ELASTICSEARCH_DOC_TYPE,

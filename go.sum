@@ -8,6 +8,10 @@ github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609201448-a5254c29dac2 h1:
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609201448-a5254c29dac2/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609202555-dbba80f3fb93 h1:InCAhN1bs8ZNOcSu/PbcmXmYITmp/Leigw+YJdQF5UE=
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609202555-dbba80f3fb93/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609210727-dea2aed9ec6b h1:NG8GpQe8800gF/i0XLzZml7+EYfICWHtyCPB08+8yPY=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210609210727-dea2aed9ec6b/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210611191653-3ba0942fcd68 h1:ABtsx1AAJaX/dNiWpQdVJ8ofxSQS/qN5MY1vT7lvybg=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210611191653-3ba0942fcd68/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
