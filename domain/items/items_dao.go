@@ -2,6 +2,7 @@ package items_domain
 
 import (
 	elasticsearch_client "bookstore_items-api/clients/elasticsearch"
+	queries_domain "bookstore_items-api/domain/queries"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -56,4 +57,32 @@ func (i *Item) Get() errors_utils.APIError {
 	i.ItemID = itemId
 
 	return nil
+}
+
+func (i *Item) Search(query queries_domain.EsQuery) ([]Item, errors_utils.APIError) {
+	result, err := elasticsearch_client.Client.Search(ITEMS_ELASTICSEARCH_INDEX, query.Build())
+	if err != nil {
+		return nil, errors_utils.NewInternalServerAPIError("error when trying to search documents", err)
+	}
+
+	items := make([]Item, result.TotalHits())
+	for i, hit := range result.Hits.Hits {
+		bytes, marshalJsonErr := hit.Source.MarshalJSON()
+		if marshalJsonErr != nil {
+			return nil, errors_utils.NewInternalServerAPIError("error when trying to marshal json", marshalJsonErr)
+		}
+
+		var item Item
+		if unmarshalErr := json.Unmarshal(bytes, &item); unmarshalErr != nil {
+			return nil, errors_utils.NewInternalServerAPIError("error when trying to unmarshal json", unmarshalErr)
+		}
+		item.ItemID = hit.Id
+		items[i] = item
+	}
+
+	if len(items) == 0 {
+		return nil, errors_utils.NewNotFoundAPIError("no items found matching given criteria", nil)
+	}
+
+	return items, nil
 }
