@@ -21,7 +21,7 @@ type itemsService struct{}
 
 func (s *itemsService) Create(item items_domain.Item) (*items_domain.Item, errors_utils.APIError) {
 	if saveErr := item.Save(); saveErr != nil {
-		return &item, saveErr
+		return nil, saveErr
 	}
 
 	return &item, nil
@@ -33,12 +33,19 @@ func (s *itemsService) Get(itemId string) (*items_domain.Item, errors_utils.APIE
 	}
 
 	if saveErr := item.Get(); saveErr != nil {
-		return &item, saveErr
+		return nil, saveErr
 	}
 
 	return &item, nil
 }
 
 func (s *itemsService) Search(query queries_domain.EsQuery) ([]items_domain.Item, errors_utils.APIError) {
-	return nil, errors_utils.NewInternalServerAPIError("implement me", nil)
+	dao := items_domain.Item{}
+
+	items, err := dao.Search(query)
+	if err != nil {
+		return nil, err
+	}
+
+	return items, nil
 }

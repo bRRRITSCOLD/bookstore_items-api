@@ -2,6 +2,7 @@ package items_controllers
 
 import (
 	items_domain "bookstore_items-api/domain/items"
+	queries_domain "bookstore_items-api/domain/queries"
 	items_service "bookstore_items-api/services/items"
 	http_utils "bookstore_items-api/utils/http"
 	"encoding/json"
@@ -22,6 +23,7 @@ var (
 type itemsControllerInterface interface {
 	CreateItem(w http.ResponseWriter, r *http.Request)
 	GetItem(w http.ResponseWriter, r *http.Request)
+	SearchItems(w http.ResponseWriter, r *http.Request)
 }
 
 type itemsController struct{}
@@ -77,4 +79,29 @@ func (iC *itemsController) GetItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http_utils.RespondJson(w, http.StatusOK, item)
+}
+
+func (iC *itemsController) SearchItems(w http.ResponseWriter, r *http.Request) {
+	bytes, readAllErr := ioutil.ReadAll(r.Body)
+	if readAllErr != nil {
+		apiErr := errors_utils.NewBadRequestAPIError("error reading json body", readAllErr)
+		http_utils.RespondError(w, apiErr)
+		return
+	}
+	defer r.Body.Close()
+
+	var query queries_domain.EsQuery
+	if unmarshalErr := json.Unmarshal(bytes, &query); unmarshalErr != nil {
+		apiErr := errors_utils.NewBadRequestAPIError("error unmarshalling json body", readAllErr)
+		http_utils.RespondError(w, apiErr)
+		return
+	}
+
+	items, searchErr := items_service.ItemsService.Search(query)
+	if searchErr != nil {
+		http_utils.RespondError(w, searchErr)
+		return
+	}
+
+	http_utils.RespondJson(w, http.StatusOK, items)
 }
