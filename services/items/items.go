@@ -20,8 +20,6 @@ type itemsServiceInterface interface {
 type itemsService struct{}
 
 func (s *itemsService) Create(item items_domain.Item) (*items_domain.Item, errors_utils.APIError) {
-	// return nil, errors_utils.NewInternalServerAPIError("implement me", nil)
-
 	if saveErr := item.Save(); saveErr != nil {
 		return &item, saveErr
 	}
@@ -29,8 +27,16 @@ func (s *itemsService) Create(item items_domain.Item) (*items_domain.Item, error
 	return &item, nil
 }
 
-func (s *itemsService) Get(id string) (*items_domain.Item, errors_utils.APIError) {
-	return nil, errors_utils.NewInternalServerAPIError("implement me", nil)
+func (s *itemsService) Get(itemId string) (*items_domain.Item, errors_utils.APIError) {
+	item := items_domain.Item{
+		ItemID: itemId,
+	}
+
+	if saveErr := item.Get(); saveErr != nil {
+		return &item, saveErr
+	}
+
+	return &item, nil
 }
 
 func (s *itemsService) Search(query queries_domain.EsQuery) ([]items_domain.Item, errors_utils.APIError) {

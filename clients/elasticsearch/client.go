@@ -21,6 +21,7 @@ var (
 type esClientInterface interface {
 	setClient(*elastic.Client)
 	Index(string, string, interface{}) (*elastic.IndexResponse, error)
+	Get(index string, docType string, id string) (*elastic.GetResult, error)
 	// Get(string, string, string) (*elastic.GetResult, error)
 	// Search(string, elastic.Query) (*elastic.SearchResult, error)
 }
@@ -66,19 +67,19 @@ func (c *esClient) Index(index string, docType string, doc interface{}) (*elasti
 	return result, nil
 }
 
-// func (c *esClient) Get(index string, docType string, id string) (*elastic.GetResult, error) {
-// 	ctx := context.Background()
-// 	result, err := c.client.Get().
-// 		Index(index).
-// 		Type(docType).
-// 		Id(id).
-// 		Do(ctx)
-// 	if err != nil {
-// 		logger_utils.Error(fmt.Sprintf("error when trying to get id %s", id), err)
-// 		return nil, err
-// 	}
-// 	return result, nil
-// }
+func (c *esClient) Get(index string, docType string, id string) (*elastic.GetResult, error) {
+	ctx := context.Background()
+	result, err := c.client.Get().
+		Index(index).
+		Type(docType).
+		Id(id).
+		Do(ctx)
+	if err != nil {
+		logger_utils.Error(fmt.Sprintf("error when trying to get id %s", id), err)
+		return nil, err
+	}
+	return result, nil
+}
 
 // func (c *esClient) Search(index string, query elastic.Query) (*elastic.SearchResult, error) {
 // 	ctx := context.Background()

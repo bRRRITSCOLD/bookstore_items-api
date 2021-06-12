@@ -9,5 +9,5 @@ import (
 func mapUrls() {
 	router.HandleFunc("/ping", ping_controllers.PingController.Ping).Methods(http.MethodGet)
 	router.HandleFunc("/items", items_controllers.ItemsController.CreateItem).Methods(http.MethodPost)
-	router.HandleFunc("/items/:id", items_controllers.ItemsController.GetItem).Methods(http.MethodGet)
+	router.HandleFunc("/items/{itemId}", items_controllers.ItemsController.GetItem).Methods(http.MethodGet)
 }
