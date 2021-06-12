@@ -1,6 +1,7 @@
 package app
 
 import (
+	elasticsearch_client "bookstore_items-api/clients/elasticsearch"
 	"log"
 	"net/http"
 
@@ -12,6 +13,8 @@ var (
 )
 
 func StartApp() {
+	elasticsearch_client.Init()
+
 	mapUrls()
 
 	srv := &http.Server{
